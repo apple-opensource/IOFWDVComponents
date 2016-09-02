@@ -68,6 +68,7 @@ typedef struct _DVDevice
     UInt8		fWriteChan;			// Channel the Mac writes to the device on
     UInt8		fReadChan;			// Channel the Mac reads from the device on
     UInt8		fMaxSpeed;			// Max bus speed for isoc channel
+    bool		fSupportsFCP;		// Does device support AVC commands using the FCP protocol?
     bool		p2pConnected;
     UInt32		p2pPlug;
     UInt32		p2pChan;
@@ -189,6 +190,7 @@ extern void DVWriteFreeFrames(DVGlobalOutPtr globs);
 extern void DVWriteFree(DVGlobalOutPtr globs);
 
 extern DVGlobalInPtr DVAllocRead(DVDevice *device, DVThread *thread);
+extern IOReturn DVReadSetSignalMode(DVGlobalInPtr globs, UInt8 mode);
 extern IOReturn DVReadAllocFrames(DVGlobalInPtr globs, UInt32 numFrames, 
         DVFrameVars **frameVars, UInt8 **frames);
 extern IOReturn DVReadStart(DVGlobalInPtr globs);
